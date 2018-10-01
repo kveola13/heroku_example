@@ -1,7 +1,7 @@
 jobs:
 
 # Replace params / app_name with your heroku app name
-- name: deploy-heroku
+- name: heroku-deployment
   plan:
   - aggregate:
     - get: heroku-example
