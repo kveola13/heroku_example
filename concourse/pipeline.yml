@@ -11,7 +11,7 @@ jobs:
     file: heroku-example/concourse/heroku_sync.yml
     input_mapping: {source: heroku-example-app}
     params:
-      app_name: glennbech-heroku-example
+      app_name: kveola13-heroku-example
       heroku_email: ((heroku_email))
       heroku_api_token: ((heroku_api_token))
 
@@ -21,7 +21,7 @@ resources:
 - name: heroku-example
   type: git
   source:
-      uri: git@github.com:PGR301-2018/heroku_example.git
+      uri: git@github.com:kveola13/heroku_example.git
       branch: master
       private_key: ((deploy_key))
 
@@ -29,6 +29,6 @@ resources:
 - name: heroku-example-app
   type: git
   source:
-      uri: git@github.com:PGR301-2018/heroku_example-app.git
+      uri: git@github.com:kveola13/heroku_example-app.git
       branch: master
       private_key: ((deploy-key-app))
