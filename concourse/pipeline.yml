@@ -1,0 +1,34 @@
+jobs:
+
+# Replace params / app_name with your heroku app name
+- name: deploy-heroku
+  plan:
+  - aggregate:
+    - get: heroku-example
+    - get: heroku-example-app
+      trigger: true
+  - task: sync_heroku
+    file: heroku-example/concourse/heroku_sync.yml
+    input_mapping: {source: heroku-example-app}
+    params:
+      app_name: glennbech-heroku-example
+      heroku_email: ((heroku_email))
+      heroku_api_token: ((heroku_api_token))
+
+resources:
+
+# Replace with your own repository
+- name: heroku-example
+  type: git
+  source:
+      uri: git@github.com:PGR301-2018/heroku_example.git
+      branch: master
+      private_key: ((deploy_key))
+
+# Replace with your own repository
+- name: heroku-example-app
+  type: git
+  source:
+      uri: git@github.com:PGR301-2018/heroku_example-app.git
+      branch: master
+      private_key: ((deploy-key-app))
